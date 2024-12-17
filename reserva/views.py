@@ -41,7 +41,7 @@ class DashboardView(ListView):
 
 # -- EMAIL --
 def send_email_create(instance):
-    admin_users = Group.objects.get(name='Admin').user_set.all()
+    admin_users = Group.objects.get(name='Admin' or 'Bolsistas').user_set.all()
 
     for admin in admin_users:
         send_mail(
@@ -84,7 +84,7 @@ def save_form(request, form, template_name, email):
             elif email == 'status':
                 send_email_status(instance)
 
-            if request.user.groups.filter(name = u'Admin'):
+            if request.user.groups.filter(name = u'Admin' u'Bolsistas'):
                 solicitacoes = Solicitacao.objects.all().order_by('-post')
 
             else:
@@ -101,7 +101,7 @@ def save_form(request, form, template_name, email):
                 solicitacoes = paginator.page(paginator.num_pages)
 
 
-            if request.user.groups.filter(name = u'Admin'):
+            if request.user.groups.filter(name = u'Admin' u'Bolsistas'):
                 data['html_list'] = render_to_string("solicitacao/adm-list.html", {'object_list': solicitacoes})
             else:
                 data['html_list'] = render_to_string("solicitacao/list.html", {'object_list': solicitacoes})
@@ -172,6 +172,9 @@ def solicitacao_delete(request, pk):
     
     return JsonResponse(data)
 
+# 
+# 
+# 
 # SOLICITACAO STATUS UPDATE
 def status_update(request, pk):
     solicitacao = get_object_or_404(Solicitacao, pk=pk)
