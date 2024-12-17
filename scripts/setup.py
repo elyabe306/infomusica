@@ -26,10 +26,11 @@ print(
 )
 
 adminG, created = Group.objects.get_or_create(name='Admin')
+bolsistaG, created = Group.objects.get_or_create(name='Bolsistas')
 alunoG, created = Group.objects.get_or_create(name='Aluno')
 
 admin = User.objects.get(username='admin')
-adminP, created = Perfil.objects.get_or_create(user=admin, matricula="00001")
+adminP, created = Perfil.objects.get_or_create(user=admin, matricula="1")
 admin.groups.add(adminG)
 
 s1 = Status.objects.create(name='Pendente')

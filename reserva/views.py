@@ -187,7 +187,7 @@ def status_update(request, pk):
 
 # LIST
 class SolicitacaoList(GroupRequiredMixin, ListView):
-    group_required = [u'Aluno', u'Admin']
+    group_required = [u'Aluno', u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Solicitacao
     template_name = 'solicitacao/solicitacao.html'
@@ -223,7 +223,7 @@ class SolicitacaoList(GroupRequiredMixin, ListView):
         return context
     
 class SolicitacaoDetail(GroupRequiredMixin, ListView):
-    group_required = [u'Aluno', u'Admin']
+    group_required = [u'Aluno', u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Solicitacao
     template_name = 'solicitacao/detail.html'
@@ -235,7 +235,7 @@ class SolicitacaoDetail(GroupRequiredMixin, ListView):
 # -- CRUD ITEMS -- 
 # CREATE
 class ItemCreate(GroupRequiredMixin, CreateView):
-    group_required = [u'Admin']
+    group_required = [u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Item
     fields = ['name', 'description', 'image', 'sound']
@@ -249,7 +249,7 @@ class ItemCreate(GroupRequiredMixin, CreateView):
 
 # UPDATE 
 class ItemUpdate(GroupRequiredMixin, UpdateView):
-    group_required = [u'Admin']
+    group_required = [u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Item
     fields = ['name', 'description', 'image', 'sound']
@@ -268,7 +268,7 @@ class ItemUpdate(GroupRequiredMixin, UpdateView):
 
 # DELETE
 class ItemDelete(GroupRequiredMixin, DeleteView):
-    group_required = [u'Admin']
+    group_required = [u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Item
     template_name = 'form-excluir.html'
@@ -280,7 +280,7 @@ class ItemDelete(GroupRequiredMixin, DeleteView):
 
 # LIST
 class ItemList(GroupRequiredMixin, ListView):
-    group_required = [u'Admin']
+    group_required = [u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Item
     template_name = 'lista/item.html'
@@ -290,7 +290,7 @@ class ItemList(GroupRequiredMixin, ListView):
 
 # VIEW
 class InventoryView(GroupRequiredMixin, ListView):
-    group_required = [u'Aluno', u'Admin']
+    group_required = [u'Aluno', u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Item
     template_name = 'lista/inventory.html'
@@ -300,7 +300,7 @@ class InventoryView(GroupRequiredMixin, ListView):
 
 # -- CRUD POST --
 class PostCreate(GroupRequiredMixin, CreateView):
-    group_required = [u'Admin']
+    group_required = [u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     form_class = PostForm
     template_name = 'form.html'
@@ -317,7 +317,7 @@ class PostCreate(GroupRequiredMixin, CreateView):
 
 # UPDATE 
 class PostUpdate(GroupRequiredMixin, UpdateView):
-    group_required = [u'Admin']
+    group_required = [u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     form_class = PostForm
     template_name = 'form.html'
@@ -346,7 +346,7 @@ class PostDelete(GroupRequiredMixin, DeleteView):
 
 # LIST
 class PostList(GroupRequiredMixin, ListView):
-    group_required = [u'Admin']
+    group_required = [u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Post
     template_name = 'lista/post.html'
@@ -355,14 +355,14 @@ class PostList(GroupRequiredMixin, ListView):
 
 # VIEW
 class PostDetail(GroupRequiredMixin, DetailView):
-    group_required = [u'Aluno', u'Admin']
+    group_required = [u'Aluno', u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Post
     template_name = 'lista/post-detail.html'
 
 # LIST USER
 class PostListClient(GroupRequiredMixin, ListView):
-    group_required = [u'Aluno', u'Admin']
+    group_required = [u'Aluno', u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Post
     template_name = 'lista/post-list.html'
@@ -417,7 +417,7 @@ def register(request):
 
 # UPDATE
 class UsuarioUpdate(GroupRequiredMixin, UpdateView):
-    group_required = [u'Admin']
+    group_required = [u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = User
     fields = ['username', 'email']
@@ -447,7 +447,7 @@ class UsuarioDelete(GroupRequiredMixin, DeleteView):
 
 # LIST
 class UsuarioList(GroupRequiredMixin, ListView):
-    group_required = [u'Admin']
+    group_required = [u'Admin', u'Bolsistas']
     login_url = reverse_lazy('login')
     model = Perfil
     template_name = 'lista/usuario.html'

@@ -34,6 +34,10 @@
                         <td>{{ el.user.groups.first.name }}</td> 
                         <td>{{ el.user.email }}</td>
                         <td>
+                    
+                    {% for group in request.user.groups.all %}
+                    {% if group.name == 'Admin' %}
+
                             <div class="d-inline-block">
                             <a 
                                 href="{% url 'editar-usuario' el.pk %}" 
@@ -55,6 +59,8 @@
                     <form action="{% url 'excluir-usuario' el.pk %}" method="post">
                         {% include 'form-excluir.html' %}
                     </form>
+
+                    {%endif%} {%endfor%}
                     
                     {% empty %}
                     <tr>
