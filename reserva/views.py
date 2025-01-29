@@ -198,7 +198,7 @@ class SolicitacaoList(GroupRequiredMixin, ListView):
     paginate_by = 7
         
     def get_queryset(self):
-        if self.request.user.groups.filter(name = u'Admin'):
+        if self.request.user.groups.filter(name = u'Admin' or 'Bolsistas'):
             queryset = Solicitacao.objects.all().order_by('-post')
 
         else:
