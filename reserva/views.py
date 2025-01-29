@@ -101,7 +101,9 @@ def save_form(request, form, template_name, email):
                 solicitacoes = paginator.page(paginator.num_pages)
 
 
-            if request.user.groups.filter(name = u'Admin' or u'Bolsistas'):
+            if request.user.groups.filter(name = u'Admin'):
+                data['html_list'] = render_to_string("solicitacao/adm-list.html", {'object_list': solicitacoes})
+            elif request.user.groups.filter(name = u'Bolsistas'):
                 data['html_list'] = render_to_string("solicitacao/adm-list.html", {'object_list': solicitacoes})
             else:
                 data['html_list'] = render_to_string("solicitacao/list.html", {'object_list': solicitacoes})
