@@ -84,7 +84,9 @@ def save_form(request, form, template_name, email):
             elif email == 'status':
                 send_email_status(instance)
 
-            if request.user.groups.filter(name = u'Admin' or u'Bolsistas'):
+            if request.user.groups.filter(name = u'Admin'):
+                solicitacoes = Solicitacao.objects.all().order_by('-post')
+            elif request.user.groups.filter(name = u'Bolsistas'):
                 solicitacoes = Solicitacao.objects.all().order_by('-post')
 
             else:
